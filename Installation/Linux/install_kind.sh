@@ -12,13 +12,23 @@ check_sudo() {
 install_kind() {
     echo "Installing kind..."
 
+    # Prompt for the desired version
+    read -p "Enter the desired version of kind (default: v0.22.0): " version
+    version=${version:-v0.22.0}
+
+    # Validate the version format
+    if ! [[ $version =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        echo "Invalid version format. Please use the format: vX.Y.Z"
+        exit 1
+    fi
+
     # Determine the architecture
     case $(uname -m) in
         x86_64)
-            curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.22.0/kind-linux-amd64
+            arch="amd64"
             ;;
         aarch64)
-            curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.22.0/kind-linux-arm64
+            arch="arm64"
             ;;
         *)
             echo "Unsupported architecture. Exiting..."
@@ -26,13 +36,35 @@ install_kind() {
             ;;
     esac
 
+    # Download the kind binary
+    echo "Downloading kind..."
+    if ! curl -Lo ./kind https://kind.sigs.k8s.io/dl/$version/kind-linux-$arch; then
+        echo "Failed to download kind. Please check your network connection and try again."
+        exit 1
+    fi
+
+    # Verify the binary checksum
+    echo "Verifying the binary checksum..."
+    curl -Lo ./kind.sha256 https://kind.sigs.k8s.io/dl/$version/kind-linux-$arch.sha256
+    if ! sha256sum --check --status ./kind.sha256; then
+        echo "Checksum verification failed. Please try again."
+        rm ./kind ./kind.sha256
+        exit 1
+    fi
+    rm ./kind.sha256
+
     # Make the kind binary executable
     chmod +x ./kind
 
-    # Move the kind binary to /usr/local/bin
-    sudo mv ./kind /usr/local/bin/kind
-
-    echo "kind installed successfully."
+    # Prompt for confirmation before moving the binary
+    read -p "Move kind to /usr/local/bin? [Y/n]: " confirm
+    confirm=${confirm:-Y}
+    if [[ $confirm =~ ^[Yy]$ ]]; then
+        sudo mv ./kind /usr/local/bin/kind
+        echo "kind installed successfully."
+    else
+        echo "kind binary not moved to /usr/local/bin. You can manually move it if desired."
+    fi
 }
 
 # Function to test kind installation
