@@ -1,6 +1,6 @@
 # Kubernetes Tools Installation Scripts
 
-This repository contains PowerShell scripts to automate the installation of `kubectl` and `kind` on Windows machines.
+This folder contains PowerShell scripts to automate the installation of `kubectl` and `kind` on Windows machines.
 
 ## Prerequisites
 
@@ -60,5 +60,3 @@ By using `kubectl` and `kind` together, you can easily create and interact with 
 - The scripts may prompt you for administrative privileges during execution to perform certain tasks.
 - The scripts download the latest versions of `kubectl` and `kind` at the time of writing. However, newer versions may be available in the future. You can update the version variables in the scripts if needed.
 - If you encounter any issues or have questions, please refer to the official documentation of `kubectl` and `kind` or seek support from the respective communities.
-
-Happy Kubernetes learning and experimentation!
