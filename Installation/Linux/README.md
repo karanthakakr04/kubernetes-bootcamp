@@ -79,5 +79,3 @@ By using `kubectl` and `kind` together, you can easily create and interact with 
 - The scripts are designed to work on common Linux distributions, including Debian/Ubuntu, CentOS/RHEL/Fedora, and SUSE. If you are using a different distribution, you may need to modify the package manager commands accordingly.
 - The scripts assume that you have internet connectivity to download the necessary files.
 - If you encounter any issues or have questions, please refer to the official documentation of `kubectl` and `kind` or seek support from the respective communities.
-
-Happy Kubernetes learning and experimentation!
