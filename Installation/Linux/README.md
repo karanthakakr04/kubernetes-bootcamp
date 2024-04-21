@@ -28,43 +28,43 @@ The script prompts you to specify the desired version of `kind` to install, with
 
 ## Usage
 
-1. Clone this repository to your local machine:
+1. Clone this repository to your local machine or download the desired script(s).
 
-```bash
-git clone https://github.com/your-repo/kubernetes-tools-installation-linux.git
-```
+2. Open a terminal with administrative privileges.
 
-2. Navigate to the cloned repository:
+3. Navigate to the directory where the script(s) are located.
 
-```bash
-cd kubernetes-tools-installation-linux
-```
+4. Make the script(s) executable:
+   - To make `install_kubectl.sh` executable, run:
 
-3. Make the scripts executable:
+     ```bash
+     chmod +x install_kubectl.sh
+     ```
 
-```bash
-chmod +x install_kubectl.sh install_kind.sh
-```
+   - To make `install_kind.sh` executable, run:
 
-4. Run the desired script with sudo privileges:
+     ```bash
+     chmod +x install_kind.sh
+     ```
 
-- To install `kubectl`:
+5. Run the desired script:
+   - To install `kubectl`, run:
 
-  ```bash
-  sudo ./install_kubectl.sh
-  ```
+     ```bash
+     sudo ./install_kubectl.sh
+     ```
 
-- To install `kind`:
+   - To install `kind`, run:
 
-  ```bash
-  sudo ./install_kind.sh
-  ```
+     ```bash
+     sudo ./install_kind.sh
+     ```
 
-5. Follow the prompts and provide the necessary information when asked.
+6. Follow the prompts and provide the necessary information when asked.
 
-6. Wait for the installation to complete. The script will display the progress and any relevant information.
+7. Wait for the installation to complete. The script will display the progress and any relevant information.
 
-7. Once the installation is finished, you can start using `kubectl` and `kind` to interact with Kubernetes clusters.
+8. Once the installation is finished, you can start using `kubectl` and `kind` to interact with Kubernetes clusters.
 
 ## What are kubectl and kind?
 
